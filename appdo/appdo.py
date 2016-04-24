@@ -21,9 +21,8 @@ class Config(object):
 
     def merge_config_file(self, conf_file):
         """Merge config from file name."""
-        fobj = open(conf_file)
-        conf = toml.loads(fobj.read())
-        fobj.close()
+        with open(conf_file) as fobj:
+            conf = toml.loads(fobj.read())
         return self.merge_config(conf)
 
     def merge_config(self, conf):
