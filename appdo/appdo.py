@@ -234,7 +234,7 @@ def list_apps():
     '''
     list all apps defined.
     '''
-    print "\n".join(get_config().keys())
+    print("\n".join(get_config().keys()))
     exit(0)
 
 @click.command()
@@ -256,6 +256,6 @@ def run(app, cmd, listapp):
         command = CommandBuilder(cmd, conf.get_statements(app))
         command.run()
     else:
-        print "No command specified.\nFor further information, use\n   $ appdo --help"
+        print("No command specified.\nFor further information, use\n   $ appdo --help")
         exit(1)
 
