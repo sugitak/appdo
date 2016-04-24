@@ -119,6 +119,7 @@ class Config(object):
 
 class CommandBuilder(object):
     """Command Builder."""
+
     def __init__(self, args, prerun=()):
         """init."""
         if len(args) == 1:
