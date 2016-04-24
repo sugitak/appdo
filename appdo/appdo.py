@@ -30,9 +30,9 @@ class Config(object):
         '''
         Merge config from file name.
         '''
-        fd = open(conf_file)
-        conf = toml.loads(fd.read())
-        fd.close()
+        fobj = open(conf_file)
+        conf = toml.loads(fobj.read())
+        fobj.close()
         return self.merge_config(conf)
 
     def merge_config(self, conf):
@@ -92,7 +92,7 @@ class Config(object):
         try:
             envs = conf['env']
             if isinstance(envs, dict):
-                return [k + '=' + v for k,v in envs.items()]
+                return [k + '=' + v for k, v in envs.items()]
             else:
                 return []
         except KeyError:
@@ -131,6 +131,7 @@ class Config(object):
         return beforerun, prerun
 
     def keys(self):
+        '''respond keys.'''
         return [x for x in self.config.keys() if isinstance(self.config[x], dict)]
 
 
