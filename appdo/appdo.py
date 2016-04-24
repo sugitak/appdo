@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
-Main file for appdo
+Main file for appdo.
 """
 
 import re
@@ -15,12 +14,12 @@ import toml
 
 class Config(object):
     """
-    Config
+    Config.
     """
 
     def __init__(self, config=None):
         """
-        init
+        init.
         """
         self.config = {}
         if config:
@@ -45,7 +44,7 @@ class Config(object):
     @staticmethod
     def build_source_commands(conf):
         """
-        private method
+        private method.
         """
         try:
             srcfile = conf['source']
@@ -59,7 +58,7 @@ class Config(object):
     @staticmethod
     def build_cd_command(conf):
         """
-        private method
+        private method.
         """
         try:
             cmd = conf['cd']
@@ -73,7 +72,7 @@ class Config(object):
     @staticmethod
     def build_before_commands(conf):
         """
-        private method
+        private method.
         """
         try:
             cmd = conf['before']
@@ -87,7 +86,7 @@ class Config(object):
     @staticmethod
     def build_envs(conf):
         """
-        private method
+        private method.
         """
         try:
             envs = conf['env']
@@ -101,7 +100,7 @@ class Config(object):
     @staticmethod
     def build_prefix_command(conf):
         """
-        private method
+        private method.
         """
         try:
             cmd = conf['prefix']
@@ -138,11 +137,11 @@ class Config(object):
 
 class CommandBuilder(object):
     """
-    Command Builder
+    Command Builder.
     """
     def __init__(self, args, prerun=()):
         """
-        init
+        init.
         """
         if len(args) == 1:
             args = list(args[0].split(' '))
@@ -154,7 +153,7 @@ class CommandBuilder(object):
 
     def build_beforerun_command(self):
         """
-        build
+        build.
         """
         if self.beforerun:
             cmd = '; '.join(self.beforerun) + '; '
@@ -164,7 +163,7 @@ class CommandBuilder(object):
 
     def build_pre_command(self):
         """
-        build
+        build.
         """
         if self.prerun:
             cmd = ' '.join(self.prerun) + ' '
@@ -174,7 +173,7 @@ class CommandBuilder(object):
 
     def build_last_command(self):
         """
-        build
+        build.
         """
         if self.command:
             cmd = ' '.join(self.command)
@@ -182,7 +181,7 @@ class CommandBuilder(object):
 
     def build_command(self):
         """
-        create bash oneliner command
+        create bash oneliner command.
         """
         cmd = self.build_beforerun_command()
         cmd += self.build_pre_command()
@@ -201,7 +200,7 @@ class CommandBuilder(object):
 
 def matches(key, val, regex):
     """
-    check if it matches
+    check if it matches.
     """
     if regex:
         reg = re.compile(val)
@@ -212,7 +211,7 @@ def matches(key, val, regex):
 
 def get_config():
     """
-    search for config files
+    search for config files.
     """
     files = ['/etc/appdo.conf', homedir() + '/.appdo.conf']
     conf = Config()
