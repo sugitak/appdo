@@ -40,9 +40,9 @@ class Config(object):
         if not srcfile:
             return srcfile
         if isinstance(srcfile, str):
-            return ['source ' + srcfile]
+            return ['source {0}'.format(srcfile)]
         else:
-            return ['source ' + x for x in srcfile]
+            return ['source {0}'.format(x) for x in srcfile]
 
     @staticmethod
     def _build_cd_command(conf):
@@ -51,7 +51,7 @@ class Config(object):
         if not cmd:
             return cmd
         if isinstance(cmd, str):
-            return ['cd ' + cmd]
+            return ['cd {0}'.format(cmd)]
         else:
             return []
 
@@ -73,7 +73,7 @@ class Config(object):
         if not envs:
             return envs
         if isinstance(envs, dict):
-            return [k + '=' + v for k, v in envs.items()]
+            return ['{0}={1}'.format(k, v) for k, v in envs.items()]
         else:
             return []
 
@@ -84,7 +84,7 @@ class Config(object):
         if not cmd:
             return cmd
         if isinstance(cmd, str):
-            return [cmd + ' ']
+            return ['{0} '.format(cmd)]
         else:
             return []
 
@@ -175,7 +175,7 @@ def matches(key, val, regex):
 
 def get_config():
     """search for config files."""
-    files = ['/etc/appdo.conf', homedir() + '/.appdo.conf']
+    files = ['/etc/appdo.conf', '{0}/.appdo.conf'.format(homedir())]
     conf = Config()
     for filename in files:
         if path.exists(filename):
