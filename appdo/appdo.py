@@ -132,8 +132,8 @@ class Config(object):
 
     def keys(self):
         '''respond keys.'''
-        return [x for x in self.config.keys() if isinstance(self.config[x], dict)]
-
+        return [x for x in self.config.keys()
+                if isinstance(self.config[x], dict)]
 
 
 class CommandBuilder(object):
@@ -237,6 +237,7 @@ def list_apps():
     print("\n".join(get_config().keys()))
     exit(0)
 
+
 @click.command()
 @click.argument('cmd', nargs=-1)
 @click.option('--app', default='default')
@@ -244,7 +245,8 @@ def list_apps():
 def run(app, cmd, listapp):
     '''
     Run command in application context.
-    If you want to use any options in your command, place them after '--' option.
+    If you want to use any options in your command,
+    place them after '--' option.
 
       $ appdo -- ls -la
     '''
@@ -256,6 +258,6 @@ def run(app, cmd, listapp):
         command = CommandBuilder(cmd, conf.get_statements(app))
         command.run()
     else:
-        print("No command specified.\nFor further information, use\n   $ appdo --help")
+        print("No command specified.\nFor further information, use\n"
+              "   $ appdo --help")
         exit(1)
-
