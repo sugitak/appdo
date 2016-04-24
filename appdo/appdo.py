@@ -4,6 +4,7 @@
 
 import re
 import sys
+import shlex
 from os import execvp, path
 from getpass import getuser
 
@@ -118,7 +119,7 @@ class CommandBuilder(object):
     def __init__(self, args, prerun=()):
         """init."""
         if len(args) == 1:
-            args = list(args[0].split(' '))
+            args = list(shlex.split(args[0]))
         else:
             args = list(args)
         self.command = args
