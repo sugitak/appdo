@@ -28,6 +28,7 @@ class Config(object):
 
     def merge_config(self, conf):
         """Merge config.
+
         TODO: use better merging
         """
         self.config.update(conf)
@@ -94,6 +95,7 @@ class Config(object):
 
     def get_statements(self, mode='default'):
         """Create bash statements from config file.
+
         returns array.
         """
         beforerun = []
@@ -159,7 +161,8 @@ class CommandBuilder(object):
 
     def run(self):
         """run the command.
-        be itself
+
+        be itself.
         """
         cmd = self.build_command()
         execvp(cmd[0], cmd)
@@ -186,6 +189,7 @@ def get_config():
 
 def homedir():
     """return $HOME.
+
     just in case it be used in sudo.
     """
     return path.expanduser('~' + getuser())
@@ -203,6 +207,7 @@ def list_apps():
 @click.option('--listapp', is_flag=True, default=False)
 def run(app, cmd, listapp):
     """Run command in application context.
+
     If you want to use any options in your command,
     place them after '--' option.
 
