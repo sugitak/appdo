@@ -3,6 +3,7 @@
 """Main file for appdo."""
 
 import re
+import sys
 from os import execvp, path
 from getpass import getuser
 
@@ -210,7 +211,7 @@ def run(app, cmd, listapp):
     """
     if listapp:
         list_apps()
-        exit(0)
+        sys.exit(0)
     elif cmd:
         conf = get_config()
         command = CommandBuilder(cmd, conf.get_statements(app))
@@ -218,4 +219,4 @@ def run(app, cmd, listapp):
     else:
         print("No command specified.\nFor further information, use\n"
               "   $ appdo --help")
-        exit(1)
+        sys.exit(1)
