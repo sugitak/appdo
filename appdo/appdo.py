@@ -35,61 +35,56 @@ class Config(object):
     @staticmethod
     def _build_source_commands(conf):
         """private method."""
-        try:
-            srcfile = conf['source']
-            if isinstance(srcfile, str):
-                return ['source ' + srcfile]
-            else:
-                return ['source ' + x for x in srcfile]
-        except KeyError:
-            return []
+        srcfile = conf.get('source')
+        if not srcfile:
+            return srcfile
+        if isinstance(srcfile, str):
+            return ['source ' + srcfile]
+        else:
+            return ['source ' + x for x in srcfile]
 
     @staticmethod
     def _build_cd_command(conf):
         """private method."""
-        try:
-            cmd = conf['cd']
-            if isinstance(cmd, str):
-                return ['cd ' + cmd]
-            else:
-                return []
-        except KeyError:
+        cmd = conf['cd']
+        if not cmd:
+            return cmd
+        if isinstance(cmd, str):
+            return ['cd ' + cmd]
+        else:
             return []
 
     @staticmethod
     def _build_before_commands(conf):
         """private method."""
-        try:
-            cmd = conf['before']
-            if isinstance(cmd, str):
-                return [cmd]
-            else:
-                return cmd
-        except KeyError:
-            return []
+        cmd = conf['before']
+        if not cmd:
+            return cmd
+        if isinstance(cmd, str):
+            return [cmd]
+        else:
+            return cmd
 
     @staticmethod
     def _build_envs(conf):
         """private method."""
-        try:
-            envs = conf['env']
-            if isinstance(envs, dict):
-                return [k + '=' + v for k, v in envs.items()]
-            else:
-                return []
-        except KeyError:
+        envs = conf['env']
+        if not envs:
+            return envs
+        if isinstance(envs, dict):
+            return [k + '=' + v for k, v in envs.items()]
+        else:
             return []
 
     @staticmethod
     def _build_prefix_command(conf):
         """private method."""
-        try:
-            cmd = conf['prefix']
-            if isinstance(cmd, str):
-                return [cmd + ' ']
-            else:
-                return []
-        except KeyError:
+        cmd = conf['prefix']
+        if not cmd:
+            return cmd
+        if isinstance(cmd, str):
+            return [cmd + ' ']
+        else:
             return []
 
     def get_statements(self, mode='default'):
