@@ -34,7 +34,7 @@ class Config(object):
         self.config.update(conf)
 
     @staticmethod
-    def build_source_commands(conf):
+    def _build_source_commands(conf):
         """private method."""
         try:
             srcfile = conf['source']
@@ -46,7 +46,7 @@ class Config(object):
             return []
 
     @staticmethod
-    def build_cd_command(conf):
+    def _build_cd_command(conf):
         """private method."""
         try:
             cmd = conf['cd']
@@ -58,7 +58,7 @@ class Config(object):
             return []
 
     @staticmethod
-    def build_before_commands(conf):
+    def _build_before_commands(conf):
         """private method."""
         try:
             cmd = conf['before']
@@ -70,7 +70,7 @@ class Config(object):
             return []
 
     @staticmethod
-    def build_envs(conf):
+    def _build_envs(conf):
         """private method."""
         try:
             envs = conf['env']
@@ -82,7 +82,7 @@ class Config(object):
             return []
 
     @staticmethod
-    def build_prefix_command(conf):
+    def _build_prefix_command(conf):
         """private method."""
         try:
             cmd = conf['prefix']
@@ -103,11 +103,11 @@ class Config(object):
 
         if mode in self.config.keys():
             conf = self.config[mode]
-            beforerun += self.build_cd_command(conf)
-            beforerun += self.build_source_commands(conf)
-            beforerun += self.build_before_commands(conf)
-            prerun += self.build_envs(conf)
-            prerun += self.build_prefix_command(conf)
+            beforerun += self._build_cd_command(conf)
+            beforerun += self._build_source_commands(conf)
+            beforerun += self._build_before_commands(conf)
+            prerun += self._build_envs(conf)
+            prerun += self._build_prefix_command(conf)
 
         return beforerun, prerun
 
