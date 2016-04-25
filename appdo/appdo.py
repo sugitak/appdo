@@ -48,7 +48,7 @@ class Config(object):
     @staticmethod
     def _build_cd_command(conf):
         """private method."""
-        cmd = conf['cd']
+        cmd = conf.get('cd')
         if not cmd:
             return cmd
         if isinstance(cmd, str):
@@ -59,7 +59,7 @@ class Config(object):
     @staticmethod
     def _build_before_commands(conf):
         """private method."""
-        cmd = conf['before']
+        cmd = conf.get('before')
         if not cmd:
             return cmd
         if isinstance(cmd, str):
@@ -70,7 +70,7 @@ class Config(object):
     @staticmethod
     def _build_envs(conf):
         """private method."""
-        envs = conf['env']
+        envs = conf.get('env')
         if not envs:
             return envs
         if isinstance(envs, dict):
@@ -81,7 +81,7 @@ class Config(object):
     @staticmethod
     def _build_prefix_command(conf):
         """private method."""
-        cmd = conf['prefix']
+        cmd = conf.get('prefix')
         if not cmd:
             return cmd
         if isinstance(cmd, str):
