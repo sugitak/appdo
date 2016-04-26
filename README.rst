@@ -8,9 +8,8 @@ Let's eliminate `cd` and `source` in your crontab!
 Requirements
 ============
 
-* Supports Python 2.7 only
-
-We'll be supporting 3.5 soon.
+* Supports Python 2.7, 3.5.
+* Bash.
 
 Setup
 =====
